@@ -59,7 +59,7 @@ export default function HowItWorks() {
         {/* Use CSS columns for a masonry-like bento layout and show full images */}
         <div className="columns-2 sm:columns-3 lg:columns-6 gap-3 space-y-3">
           {Array.from({ length: 45 }).map((_, i) => {
-            const src = `/images/photo_${i + 1}_2026-01-02_19-53-31.jpg`;
+            const src = `/images/photo_${i + 1}_2026-01-02_19-53-31.webp`;
             return (
               <div key={i} className="break-inside-avoid relative overflow-hidden rounded-lg border border-border bg-background">
                 <img src={src} alt={`photo ${i + 1}`} loading="lazy" className="w-full h-auto object-contain transition-transform duration-200 hover:scale-105 block" />
