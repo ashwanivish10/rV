@@ -1,66 +1,71 @@
-import { Card } from "@/components/ui/card";
-import { Search, MessageCircle, Download } from "lucide-react";
+import React from "react";
+import GlowingCards, { GlowingCard } from "@/components/ui/glowing-cards";
+
+// Compact government links (no icons) to allow more items in a professional list
 
 export default function HowItWorks() {
-  const steps = [
-    {
-      number: "1",
-      icon: Search,
-      title: "Choose Service",
-      description: "Browse through 40+ digital services and select the one you need"
-    },
-    {
-      number: "2",
-      icon: MessageCircle,
-      title: "Contact via WhatsApp",
-      description: "Click on any service to connect with us instantly on WhatsApp"
-    },
-    {
-      number: "3",
-      icon: Download,
-      title: "Get Instant Results",
-      description: "Receive your documents and verification results quickly"
-    }
+  const governmentLinks = [
+    { title: "Aadhaar (UIDAI)", url: "https://uidai.gov.in/", description: "Aadhaar enrollment, updates and status" },
+    { title: "DigiLocker", url: "https://digilocker.gov.in/", description: "Access and store digital documents" },
+    { title: "Income Tax / PAN", url: "https://www.incometax.gov.in/", description: "PAN and e-filing services" },
+    { title: "NSDL PAN Services", url: "https://www.tin-nsdl.com/", description: "PAN download and status" },
+    { title: "Voter Services (NVSP)", url: "https://www.nvsp.in/", description: "Voter registration and search" },
+    { title: "Parivahan (RC/DL)", url: "https://parivahan.gov.in/", description: "Vehicle and driving license services" },
+    { title: "e-Shram", url: "https://eshram.gov.in/", description: "E-Shram registrations and services" },
+    { title: "GST Services", url: "https://www.gst.gov.in/", description: "GST registration and taxpayer services" },
+    { title: "NPCI / UPI Status", url: "https://www.npci.org.in/", description: "Payments & UPI related services" },
+    { title: "Passport Seva", url: "https://portal2.passportindia.gov.in/", description: "Passport application & tracking" },
+    { title: "UMANG", url: "https://www.umang.gov.in/", description: "Access many government services in one app" },
+    { title: "EPFO", url: "https://www.epfindia.gov.in/", description: "Employee Provident Fund services" },
+    { title: "E-Governance (MyGov)", url: "https://www.mygov.in/", description: "Government initiatives & citizen services" },
   ];
 
   return (
     <section className="py-20 bg-card/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            How It Works
+            Government Digital Services
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get your documents in three simple steps
+            Links to official government portals for common digital document services
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {steps.map((step, index) => (
-            <Card key={index} className="p-8 text-center border-card-border relative">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary text-primary-foreground text-2xl font-bold mb-6">
-                {step.number}
-              </div>
-              
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <step.icon className="w-6 h-6 text-primary" />
-              </div>
-              
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                {step.title}
-              </h3>
-              
-              <p className="text-muted-foreground">
-                {step.description}
-              </p>
-              
-              {index < steps.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 transform -translate-y-1/2">
-                  <div className="w-8 h-0.5 bg-border" />
-                </div>
-              )}
-            </Card>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <GlowingCards className="mt-2" gap="1rem" padding="1rem" enableGlow>
+          {governmentLinks.map((g, idx) => (
+            <GlowingCard key={idx} className="w-56">
+              <a
+                href={g.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${g.title}`}
+                className="block p-2 rounded-md h-full w-full text-left"
+              >
+                <div className="text-sm font-medium text-foreground truncate">{g.title}</div>
+                <div className="text-xs text-muted-foreground mt-1 line-clamp-2">{g.description}</div>
+              </a>
+            </GlowingCard>
           ))}
+        </GlowingCards>
+
+      </div>
+
+      <div className="w-full px-4 sm:px-6 lg:px-8 mt-12">
+        <h3 className="text-4xl font-semibold text-foreground mb-4 text-center">Photos</h3>
+        {/* Use CSS columns for a masonry-like bento layout and show full images */}
+        <div className="columns-2 sm:columns-3 lg:columns-6 gap-3 space-y-3">
+          {Array.from({ length: 45 }).map((_, i) => {
+            const src = `/images/photo_${i + 1}_2026-01-02_19-53-31.jpg`;
+            return (
+              <div key={i} className="break-inside-avoid relative overflow-hidden rounded-lg border border-border bg-background">
+                <img src={src} alt={`photo ${i + 1}`} loading="lazy" className="w-full h-auto object-contain transition-transform duration-200 hover:scale-105 block" />
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

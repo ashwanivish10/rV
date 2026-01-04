@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { LucideIcon } from "lucide-react";
 
 interface ServiceCardProps {
-  icon: LucideIcon;
+  icon?: LucideIcon;
   title: string;
   isInstant?: boolean;
   serviceName: string;
@@ -22,7 +22,7 @@ export default function ServiceCard({ icon: Icon, title, isInstant = true, servi
       data-testid={`card-service-${serviceName.toLowerCase().replace(/\s+/g, '-')}`}
     >
       <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center">
-        <Icon className="w-7 h-7 text-primary" />
+        {Icon ? <Icon className="w-7 h-7 text-primary" /> : <div className="w-4 h-4 rounded bg-primary/60" />}
       </div>
       
       <h3 className="text-sm font-medium text-foreground leading-tight line-clamp-2">
